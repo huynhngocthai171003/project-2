@@ -26,7 +26,7 @@ class CommentController extends Controller
         $cmt = DB::table('comment')
             ->insert([
                 'name' => $name,
-                'product_id' => $product_id,
+                'products_id' => $product_id,
                 'email' => $email,
                 'customer_id' => $cus_id,
                 'rating' => $rating,

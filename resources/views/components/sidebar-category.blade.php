@@ -7,23 +7,13 @@
                 </div>
 
                 <ul class="sidebar_nav_list">
-                    @if (session()->has('customer'))
-                    <li>
-                        <a href="{{ route('profile') }}">
-                            <i class='bx bx-user'></i>
-                        </a>
-                    </li>
-                    @endif
-                    <li>
-                        <a href="{{url('profile')}}">
-                            <i class='bx bx-user'></i>
-                        </a>
-                    </li>
 
                     <li>
-                        <a href="#">
+                        <a href="{{url('wishlist')}}">
                             <i class='bx bx-heart'></i>
-                        </a>
+                            
+                        </a> 
+                        <!-- <span class="tooltip">Profile</span> -->
                     </li>
 
 
@@ -116,7 +106,7 @@
 </div>
 
 
-</div>
+
 
 @section('script-sidebar-category')
 

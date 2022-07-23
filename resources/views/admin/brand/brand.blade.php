@@ -58,9 +58,9 @@
             </tbody>
           </table>
         </div>
-        {{-- <div class="col-md-12">
-          {{$products->links()}}
-      </div> --}}
+        <div class="col-md-12">
+          {{$brands->links()}}
+      </div>
     </div>
   </div>
 </div>

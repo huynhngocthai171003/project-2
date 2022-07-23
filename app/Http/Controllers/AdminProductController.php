@@ -108,7 +108,7 @@ class AdminProductController extends Controller
             if ($request->hasFile('image_details_3')) {
                 // $destination_path = 'public/images/products';
                 $image3 = $request->file('image_details_3');
-                $image_name3 = $image->getClientOriginalName();
+                $image_name3 = $image3->getClientOriginalName();
                 // $path = $request->file('image_details_3')->storeAs($destination_path, $image_name);
                 $image3->move('storage/images/products/', $image_name3);
                 $dataProductCreate['image_details_3'] = $image_name3;

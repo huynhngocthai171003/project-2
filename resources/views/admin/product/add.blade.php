@@ -43,36 +43,36 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="">Name</label>
-                                    <input type="text" class="form-control" name="name" placeholder="Input name">
+                                    <input type="text" class="form-control" name="name" placeholder="Input name" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="">Price</label>
-                                    <input type="number" class="form-control" name="price" placeholder="Input price">
+                                    <input type="number" class="form-control" name="price" placeholder="Input price" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="">Avatar</label>
                                     <input type="file" class="form-control-file" name="image_avatar"
-                                        placeholder="Input image">
+                                        placeholder="Input image" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="">Image details</label>
                                     <input type="file" class="form-control-file" name="image_details_1"
-                                        placeholder="Input image">
+                                        placeholder="Input image" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="">Image details</label>
                                     <input type="file" class="form-control-file" name="image_details_2"
-                                        placeholder="Input image">
+                                        placeholder="Input image" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="">Image details</label>
                                     <input type="file" class="form-control-file" name="image_details_3"
-                                        placeholder="Input image">
+                                        placeholder="Input image" required>
                                 </div>
 
                                 {{-- <div class="form-group">
@@ -89,7 +89,7 @@
 
                                 <div class="form-group">
                                     <label>Choose category </label>
-                                    <select name="category_id" class="form-control select2_init">
+                                    <select required name="category_id" class="form-control select2_init">
                                         <option value=""></option>
                                         {!! $htmlOption!!}
                                     </select>
@@ -97,7 +97,7 @@
 
                                 <div class="form-group">
                                     <label>Choose brand </label>
-                                    <select name="brand_id" class="form-control">
+                                    <select required name="brand_id" class="form-control">
                                         <option value=""></option>
                                         {!! $htmlOption1!!}
                                     </select>
@@ -105,7 +105,7 @@
 
                                 <div class="form-group col-md-3">
                                     <label for="inputState">Popular Status</label>
-                                    <select name="popular_status" class="form-control">
+                                    <select required name="popular_status" class="form-control">
                                       <option value="0">Hidden</option>
                                       <option value="1">Show</option>
                                     </select>
@@ -114,7 +114,7 @@
 
                                 <div class="form-group">
                                     <label>Input description</label>
-                                    <textarea name="description" class="form-control" rows="3"></textarea>
+                                    <textarea name="description" class="form-control" rows="3" required></textarea>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Submit</button>
