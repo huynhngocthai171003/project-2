@@ -13,15 +13,7 @@
             </div>
 
             <ul class="sidebar_nav_list">
-                @if (session()->has('customer'))
-                <li>
-                    <a href="{{route('profile')}}">
-                        <i class='bx bx-user'></i>
-                        <span class="sidebar_link">Profile</span>
-                    </a>
-                    <!-- <span class="tooltip">Profile</span> -->
-                </li>
-                @endif
+                
                 <li>
                     <a href="{{url('wishlist')}}">
                         <i class='bx bx-heart'></i>

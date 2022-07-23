@@ -33,22 +33,22 @@
                         </div> --}}
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="Input name brand">
+                            <input type="text" name="name" class="form-control" placeholder="Input name brand" required>
                         </div>
 
                         <div class="form-group">
                             <label>Description</label>
-                            <input type="text" name="description" class="form-control" placeholder="Input description">
+                            <input type="text" name="description" class="form-control" placeholder="Input description" required>
                         </div>
 
                         <div class="form-group">
                             <label>Slug</label>
-                            <input type="text" name="slug" class="form-control" placeholder="Input slug">
+                            <input type="text" name="slug" class="form-control" placeholder="Input slug" required>
                         </div>
 
                         <div class="form-group">
                             <label for="">Choose logo</label>
-                            <input type="file" class="form-control-file" name="logo"
+                            <input required type="file" class="form-control-file" name="logo"
                                 placeholder="Input logo">
                         </div>
 

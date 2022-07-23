@@ -1,85 +1,138 @@
-<html>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+<div class="col-lg-3 d-none d-lg-block">
+    <div class="row">
+        <div class="col-lg-3" style=" height: 1050px; background-color: #000000">
+            <div class="sidebar-category">
+                <div class="sidebar-category-logo">
+                    <a href="{{route('home')}}"> <img class="" src={{asset('assets/images/img/sidebar/logo1.png')}}
+                            alt=""></a>
+                </div>
 
-    <link rel="icon" type="image/x-icon"  href="{{asset('assets/images/img/sidebar/logo1.png')}}">
-    @yield('title')
-    <!-- Font Awesome -->
+                <ul class="sidebar_nav_list">
+                    
+
+                    <li>
+                        <a href="#">
+                            <i class='bx bx-heart'></i>
+                        </a>
+                    </li>
+
+                    @foreach ($categorys as $category)
+                    <li class="sidebar_nav_list_cat">
+                        <a class="{{Request::segment(2) == $category ->slug ? 'active' : ''}} sidebar_nav_list_cat"
+                            href="{{route('category-select-list', ['slug' => $category ->slug, 'id' => $category ->id])}}">
+                            <i class='{{$category->icon}}'></i>
+                        </a>
+                    </li>
+                    @endforeach
+
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="col-lg-9" style="padding-left: 0;">
+            <div class="category">
+                <div class="category-child">
+                    <div class="title-category">
+                        Category
+                    </div>
+
+                    <div class="list-product-category">
+                        <ul>
+                            @foreach ($categorys as $category)
+                            @php
+                            $catCount = \App\Models\Product::catCount($category->id);
+                            @endphp
+                            <li>
+                                <a class="  list-product-category-name "
+                                    href="{{route('category-select-list', ['slug' => $category ->slug, 'id' => $category ->id])}}">
+                                    {{$category->name}}
+                                </a>
+                                <span class="list-product-category-number"
+                                    style="position: absolute; right: 50px; text-align: center; color: #ffff; line-height: 20px ;font-weight: bold; width: 35px; height: 20px; background: #6C3EB8; border-radius: 15px;">
+                                    {{$catCount}}
+                                </span>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
 
 
+                <div class="category-child " style="background-color: #272729; border-bottom: solid #ffff 2px">
+                    <div class="title-category" style="background-color: #424244">
+                        Brand
+                    </div>
 
-    <link href="{{asset('css/allPage.css')}}" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+                    <div class="list-product-category">
+                        <ul>
+                            @foreach ($brands as $brand)
+                            @php
+                            $brandCount = \App\Models\Product::brandCount($brand->id);
+                            @endphp
+                            <li>
+                                <a class="  list-product-category-name"
+                                    href="{{route('category-select-list1', ['slug' => $brand ->slug, 'id' => $brand ->id])}}">
+                                    {{$brand->name}}</a>
+                                <span class="list-product-category-number"
+                                    style="position: absolute; right: 50px; text-align: center; color: #ffff; line-height: 20px ;font-weight: bold; width: 35px; height: 20px; background: #424244; border-radius: 15px; ">
+                                    {{$brandCount}}</span>
+                            </li>
+
+                            @endforeach
+                           
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="category-child " style="background-color: #272729; ">
+                    <div class="title-category" style="background-color: #424244">
+                        Filter
+                    </div>
+
+                    <div class="list-product-category" style="position: relative;">
+                        <div class="title-filter" style="padding-left: 60px; padding-bottom: 20px">Price</div>
+
+                        <form action="">
+                            <div id="slider-range" style="width: 230px; position: absolute; left: -35px;"></div>
+                            <input type="text" id="amount" readonly style="border:0; color:#6C3EB8; font-weight:bold; background-color: #272729;width: 100px; margin-left: 40px; margin-top: 20px">
+                            <input type="hidden" name="start-price" id="start-price">
+                            <input type="hidden" name="end-price" id="end-price">
+                            <button type="submit" class="btn btn-primary" name="filter-range" value="Price" style="margin-left: 40px; margin-top: 20px">Submit</button>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
-    <!-- Libraries Stylesheet -->
-    <link href="{{asset('lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+</div>
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{asset('css/style.min.css')}}" rel="stylesheet">
+@section('script-sidebar-category')
 
-    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+<script>
+    $( "#slider-range" ).slider({
+      orientation: "horizontal",
+      range: true,
+      min: 0,
+      max:1000,
+      values: [ 300, 700],
+      step:5,
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+        $( "#start-price" ).val( ui.values[ 0 ]);
+        $( "#end-price" ).val( ui.values[ 1 ] );
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+      }
+    });
+    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+</script>
 
-
-    {{-- <link href="{{asset('css/sidebar.css')}}" rel="stylesheet"> --}}
-    @yield('home-sidebar-css')
-    @yield('category-1-sidebar-css')
-    @yield('product-details')
-    @yield('checkout-css')
-
-
-    {{-- Link icon box --}}
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-
-
-    <!-- Favicon -->
-    {{-- <link href="img/favicon.ico" rel="icon"> --}}
-    {{-- <link rel="icon" type="image/ico" href="images/favicon(1).ico"/> --}}
-
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-</head>
-
-<body>
-    {{-- @section('sidebar')
-    This is the master sidebar.
-    @show --}}
-
-    {{-- @include('components.header') --}}
-
-
-    @yield('content')
-
-    @include('components.footer')
-
-
-
-    {{-- JavaScript Libraries --}}
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="{{asset('lib/easing/easing.min.js')}}"></script>
-    <script src="{{asset('lib/owlcarousel/owl.carousel.min.js')}}"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="{{asset('mail/jqBootstrapValidation.min.js')}}"></script>
-    <script src="{{asset('mail/contact.js')}}"></script>
-
-    <!-- Template Javascript -->
-    <script src="{{asset('js/main.js')}}"></script>
-
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-
-    @yield('script-sidebar-category')
-    @yield('script-product-details')
-
-    <data>
-</body>
-
-</html>
+@endsection
